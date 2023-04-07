@@ -1,0 +1,38 @@
+
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <script>
+  function msToTime(duration) {
+    var milliseconds = Math.floor((duration % 1000) / 100),
+      seconds = Math.floor((duration / 1000) % 60),
+      minutes = Math.floor((duration / (1000 * 60)) % 60),
+      hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+    return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+  }
+  </script>
+  <script onload="msToTime()">
+  function myFunction() {
+  var d1 = new Date(); //"now"
+  var d2 = new Date("2023/04/08/17:00");  // some date
+  var diff = Math.abs(d1-d2);
+  console.log(diff,msToTime(diff))
+  document.getElementById("diff").innerHTML = msToTime(diff);
+  }
+
+  </script>
+</head>
+<body onload="myFunction()">
+  <h1>diff: <span id="diff"></span></h1>
+  <script>
+  setTimeout(function(){
+     window.location.reload(1);
+  }, 1000);
+  </script>
+</body>
+</html>
